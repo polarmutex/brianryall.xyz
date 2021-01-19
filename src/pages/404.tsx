@@ -1,12 +1,39 @@
-import { PageProps } from "gatsby"
-import * as React from "react"
+import React from "react"
+import { graphql } from "gatsby"
+
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 
-const Error404Page: React.FC<PageProps> = () => (
-  <Layout>
-    <h1>You are here!</h1>
-    <h2>But nothing found for you #404</h2>
-  </Layout>
-)
+interface Props {
+  data: {
+    site: {
+      siteMetadata: {
+        title: string
+      }
+    }
+  }
+}
 
-export default Error404Page
+const NotFoundPage = ({ data }: Props) => {
+  const siteTitle = data.site.siteMetadata.title
+
+  return (
+    <Layout location={window.location} title={siteTitle}>
+      <SEO title="404: Not Found" />
+      <h1>Not Found</h1>
+      <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+    </Layout>
+  )
+}
+
+export default NotFoundPage
+
+export const pageQuery = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`
