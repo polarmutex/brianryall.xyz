@@ -1,85 +1,58 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
+import PostPager from "../components/post-pager"
+import style from "./blog-post.module.less"
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
 
 interface Props {
-  data: {
-    markdownRemark: any
-    site: {
-      siteMetadata: {
-        title: string
-      }
+    data: {
+        markdownRemark: any
+        site: {
+            siteMetadata: {
+                title: string
+            }
+        }
     }
-  }
-  pageContext: any
+    pageContext: any
 }
 
 const BlogPostTemplate = ({ data, pageContext }: Props) => {
-  const post = data.markdownRemark
-  const siteTitle = data.site.siteMetadata.title
-  const { previous, next } = pageContext
+    const { title, tags, description } = data.markdownRemark.frontmatter
+    const { excerpt } = data.markdownRemark
+    const { prev, next } = pageContext
+    const { id } = data.markdownRemark
 
-  return (
-    <Layout location={window.location} title={siteTitle}>
-      <SEO
-        title={post.frontmatter.title}
-        description={post.frontmatter.description || post.excerpt}
-      />
-      <h1
-        style={{
-          marginTop: rhythm(1),
-          marginBottom: 0,
-        }}
-      >
-        {post.frontmatter.title}
-      </h1>
-      <p
-        style={{
-          ...scale(-1 / 5),
-          display: `block`,
-          marginBottom: rhythm(1),
-        }}
-      >
-        {post.frontmatter.date}
-      </p>
-      <div dangerouslySetInnerHTML={{ __html: post.html }} />
-      <hr
-        style={{
-          marginBottom: rhythm(1),
-        }}
-      />
-      <Bio />
-
-      <ul
-        style={{
-          display: `flex`,
-          flexWrap: `wrap`,
-          justifyContent: `space-between`,
-          listStyle: `none`,
-          padding: 0,
-        }}
-      >
-        <li>
-          {previous && (
-            <Link to={previous.fields.slug} rel="prev">
-              ← {previous.frontmatter.title}
-            </Link>
-          )}
-        </li>
-        <li>
-          {next && (
-            <Link to={next.fields.slug} rel="next">
-              {next.frontmatter.title} →
-            </Link>
-          )}
-        </li>
-      </ul>
-    </Layout>
-  )
+    return (
+        <Layout>
+            <div>
+                <SEO
+                    title={title}
+                    description={description || excerpt}
+                />
+                <h1 style={{ backgroundColor: "#1e2127", textAlign: "left" }}>
+                    {title}
+                </h1>
+                <div
+                    dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
+                    className={style.markdownBody}
+                />
+                <div className={style.markdownBody}>
+                    <br />
+                    <span>Tagged in </span>
+                    {tags.map((tag, i) => (
+                        <a href={`/${tag}`} key={i} style={{ marginLeft: "10px" }}>
+                            {tag}
+                        </a>
+                    ))}
+                </div>
+                {/* <Share title={title} url={url} pathname={props.location.pathname} /> */}
+                <PostPager prev={prev && prev.node} next={next && next.node} />
+            </div>
+        </Layout>
+    )
 }
 
 export default BlogPostTemplate
@@ -98,9 +71,11 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
+        tags
         date(formatString: "MMMM DD, YYYY")
         description
       }
     }
   }
 `
+

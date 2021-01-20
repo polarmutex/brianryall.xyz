@@ -1,79 +1,32 @@
 import React from "react"
-import { Link } from "gatsby"
-
-import { rhythm, scale } from "../utils/typography"
+import PropTypes from "prop-types"
+import { useStaticQuery, graphql } from "gatsby"
+import style from "./layout.module.less"
+import Header from "./header"
 
 interface Props {
-  location: Location
-  title: string
-  children?: any
+    children?: any
 }
 
-const Layout = ({ location, title, children }: Props) => {
-  const rootPath = `${__PATH_PREFIX__}/`
-  let header
+const Layout = ({ children }: Props) => {
+    const data = useStaticQuery(graphql`
+        query SiteTitleQuery {
+            site {
+                siteMetadata {
+                    title
+                }
+            }
+        }
+    `)
 
-  if (location.pathname === rootPath) {
-    header = (
-      <h1
-        style={ {
-          ...scale(1.5),
-          marginBottom: rhythm(1.5),
-          marginTop: 0,
-        } }
-      >
-        <Link
-          style={ {
-            boxShadow: `none`,
-            textDecoration: `none`,
-            color: `inherit`,
-          } }
-          to={ `/` }
-        >
-          { title }
-        </Link>
-      </h1>
+    return (
+        <div>
+            <Header siteTitle={data.site.siteMetadata.title} />
+            <div className={style.container} id="content">
+                <main>{children}</main>
+            </div>
+        </div>
     )
-  } else {
-    header = (
-      <h3
-        style={ {
-          fontFamily: `Montserrat, sans-serif`,
-          marginTop: 0,
-        } }
-      >
-        <Link
-          style={ {
-            boxShadow: `none`,
-            textDecoration: `none`,
-            color: `inherit`,
-          } }
-          to={ `/` }
-        >
-          { title }
-        </Link>
-      </h3>
-    )
-  }
-
-  return (
-    <div
-      style={ {
-        marginLeft: `auto`,
-        marginRight: `auto`,
-        maxWidth: rhythm(24),
-        padding: `${rhythm(1.5)} ${rhythm(3 / 4)}`,
-      } }
-    >
-      <header>{ header }</header>
-      <main>{ children }</main>
-      <footer>
-        © { new Date().getFullYear() }, Built with
-        { ` ` }
-        <a href="https://www.gatsbyjs.org">Gatsby</a>
-      </footer>
-    </div>
-  )
 }
 
 export default Layout
