@@ -38,8 +38,6 @@ jobs:
           local_dir: "public/"
           remote_dir: ${{ secrets.DEPLOY_LOC }}
         run: |
-          npm install
-          npm run build
           mkdir ~/.ssh
           echo "$remote_key" > ~/.ssh/gh_actions_key
           chmod 600 ~/.ssh/gh_actions_key
