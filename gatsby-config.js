@@ -76,12 +76,14 @@ module.exports = {
                 pathToConfigModule: `src/utils/typography`,
             },
         },
-        //<script async defer data-domain="brianryall.xyz" src="http://localhost:8000/js/plausible.js"></script>
         {
             resolve: `gatsby-plugin-plausible`,
             options: {
                 domain: `brianryall.xyz`,
-                customDomain: `analytics.brianryall.xyz`,
+                // Currently when using a custom domain with self-hosted plausible, the script
+                // path will incorrectly point to index.js. Here we force the correct path...
+                // https://github.com/pixelplicity/gatsby-plugin-plausible/issues/49
+                customDomain: `analytics.brianryall.xyz/js/plausible.js?original=`,
             },
         },
     ],
