@@ -76,5 +76,13 @@ module.exports = {
                 pathToConfigModule: `src/utils/typography`,
             },
         },
+        //<script async defer data-domain="brianryall.xyz" src="http://localhost:8000/js/plausible.js"></script>
+        {
+            resolve: `gatsby-plugin-plausible`,
+            options: {
+                domain: `brianryall.xyz`,
+                customDomain: `analytics.brianryall.xyz`,
+            },
+        },
     ],
 }
