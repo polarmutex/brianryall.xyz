@@ -48,12 +48,6 @@ module.exports = {
         },
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
-        {
-            resolve: `gatsby-plugin-google-analytics`,
-            options: {
-                //trackingId: `ADD YOUR TRACKING ID HERE`,
-            },
-        },
         `gatsby-plugin-feed`,
         {
             resolve: `gatsby-plugin-manifest`,
@@ -83,7 +77,7 @@ module.exports = {
                 // Currently when using a custom domain with self-hosted plausible, the script
                 // path will incorrectly point to index.js. Here we force the correct path...
                 // https://github.com/pixelplicity/gatsby-plugin-plausible/issues/49
-                customDomain: `analytics.brianryall.xyz/js/plausible.js?original=`,
+                customDomain: `stats.brianryall.xyz/js/plausible.js?original=`,
             },
         },
     ],
