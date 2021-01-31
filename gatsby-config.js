@@ -9,6 +9,7 @@ module.exports = {
         },
     },
     plugins: [
+        `gatsby-plugin-sitemap`,
         {
             //A canonical link element is an HTML element that helps webmasters
             //prevent duplicate content issues in search engine optimization by
