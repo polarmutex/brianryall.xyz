@@ -93,6 +93,45 @@ module.exports = {
                 name: `posts`,
             },
         },
+        {
+            resolve: `gatsby-plugin-mdx`,
+            options: {
+                extensions: ['.mdx', '.md'],
+                gatsbyRemarkPlugins: [
+                    {
+                        resolve: 'gatsby-remark-code-titles',
+                        options: {
+                            className: 'gatsby-remark-code-title',
+                        },
+                    },
+                    {
+                        resolve: 'gatsby-remark-images',
+                        options: {
+                            maxWidth: 800,
+                            linkImagesToOriginal: false,
+                            showCaptions: false,
+                            wrapperStyle: 'margin: 16px 0;',
+                            quality: 70,
+                        },
+                    },
+                    {
+                        resolve: `gatsby-remark-prismjs`,
+                        options: {
+                            classPrefix: 'language-',
+                            inlineCodeMarker: null,
+                            aliases: {},
+                        },
+                    },
+                    {
+                        resolve: 'gatsby-remark-external-links',
+                        options: {
+                            target: '_blank',
+                            rel: 'noopener noreferrer',
+                        },
+                    },
+                ],
+            },
+        },
         `gatsby-plugin-less`,
         {
             resolve: `gatsby-transformer-remark`,
