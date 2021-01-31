@@ -134,6 +134,7 @@ module.exports = {
         },
         `gatsby-remark-images`,
         'gatsby-transformer-sharp',
+        'gatsby-plugin-styled-components',
         `gatsby-plugin-less`,
         {
             resolve: `gatsby-transformer-remark`,
