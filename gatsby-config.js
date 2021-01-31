@@ -20,6 +20,73 @@ module.exports = {
             },
         },
         {
+            resolve: `gatsby-plugin-feed`,
+            options: {
+                query: `{
+                    site {
+                        siteMetadata {
+                            title
+                            description
+                            siteUrl
+                            site_url: siteUrl
+                        }
+                    }
+                }`,
+                feeds: [
+                    {
+                        serialize: ({ query: { site, allMdx } }) => {
+                            return allMdx.nodes.map(node => {
+                                return Object.assign(
+                                    {},
+                                    node.frontmatter,
+                                    {
+                                        description: node.excerpt,
+                                        date: node.frontmatter.date,
+                                        url:
+                                            site.siteMetadata
+                                                .siteUrl +
+                                            '/' +
+                                            node.slug,
+                                        guid:
+                                            site.siteMetadata
+                                                .siteUrl +
+                                            '/' +
+                                            node.slug,
+                                        custom_elements: [
+                                            {
+                                                'content:encoded':
+                                                    node.html,
+                                            },
+                                        ],
+                                    },
+                                );
+                            });
+                        },
+                        query: `
+              {
+                allMdx(
+                  sort: { order: DESC, fields: [frontmatter___date] },
+                  filter: { fields: { collection: { in: ["books", "posts"] } } }
+                ) {
+                  nodes {
+                    excerpt
+                    html
+                    slug
+                    frontmatter {
+                      title
+                      date
+                    }
+                  }
+                }
+              }
+            `,
+                        output: '/rss.xml',
+                        title: 'Emma Goto',
+                    },
+                ],
+            },
+        },
+        {
             resolve: `gatsby-source-filesystem`,
             options: {
                 path: `${__dirname}/content/blog`,
@@ -58,19 +125,6 @@ module.exports = {
         },
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
-        `gatsby-plugin-feed`,
-        {
-            resolve: `gatsby-plugin-manifest`,
-            options: {
-                name: `Gatsby Starter Blog`,
-                short_name: `GatsbyJS`,
-                start_url: `/`,
-                background_color: `#ffffff`,
-                theme_color: `#663399`,
-                display: `minimal-ui`,
-                icon: `content/assets/gatsby-icon.png`,
-            },
-        },
         `gatsby-plugin-offline`,
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-typescript`,
