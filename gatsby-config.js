@@ -10,6 +10,15 @@ module.exports = {
     },
     plugins: [
         {
+            //A canonical link element is an HTML element that helps webmasters
+            //prevent duplicate content issues in search engine optimization by
+            //specifying the "canonical" or "preferred" version of a web page.
+            resolve: `gatsby-plugin-react-helmet-canonical-urls`,
+            options: {
+                siteUrl: `https://brianryall.xyz`,
+            },
+        },
+        {
             resolve: `gatsby-source-filesystem`,
             options: {
                 path: `${__dirname}/content/blog`,
