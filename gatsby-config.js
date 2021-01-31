@@ -135,6 +135,14 @@ module.exports = {
         `gatsby-remark-images`,
         'gatsby-transformer-sharp',
         'gatsby-plugin-styled-components',
+        {
+            resolve: `gatsby-plugin-layout`,
+            options: {
+                component: require.resolve(
+                    `./src/components/layout/index.js`,
+                ),
+            },
+        },
         `gatsby-plugin-less`,
         {
             resolve: `gatsby-transformer-remark`,
