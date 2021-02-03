@@ -8,10 +8,10 @@ import { Link }  from "gatsby"
 const PageNotFound = () => {
 
   return (
-    <Layout>
+    <>
       <Seo />
       <Link to="/">Head back home.</Link>
-    </Layout>
+    </>
   )
 }
 

@@ -14,8 +14,7 @@ interface Props {
 const BlogIndex = ({ data }: Props) => {
 
   return (
-    <Layout>
-        //<Seo />
+    <>
         <h1>Hello world!</h1>
         <p>
             My name is Brian. I am a senior software engineer. This is my home
@@ -29,7 +28,7 @@ const BlogIndex = ({ data }: Props) => {
 
         <h2>Posts</h2>
 
-    </Layout>
+    </>
   )
 }
 

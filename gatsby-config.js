@@ -139,7 +139,7 @@ module.exports = {
             resolve: `gatsby-plugin-layout`,
             options: {
                 component: require.resolve(
-                    `./src/components/layout/index.js`,
+                    `./src/components/layout/index.tsx`,
                 ),
             },
         },
@@ -159,7 +159,6 @@ module.exports = {
                             frontmatter {
                                 title
                                 tags
-                                emoji
                                 date(formatString: "DD MMMM YYYY")
                             }
                             slug
@@ -169,26 +168,19 @@ module.exports = {
               `,
                 ref: 'slug',
                 index: ['title', 'tags', 'slug'],
-                store: ['title', 'tags', 'emoji', 'date', 'slug'],
+                store: ['title', 'tags', 'date', 'slug'],
 
                 normalizer: ({ data }) =>
                     data.allMdx.nodes.map(node => ({
                         slug: node.slug,
                         title: node.frontmatter.title,
                         tags: node.frontmatter.tags,
-                        emoji: node.frontmatter.emoji,
                         date: node.frontmatter.date,
                     })),
             },
         },
         `gatsby-plugin-react-helmet`,
         `gatsby-plugin-typescript`,
-        {
-            resolve: `gatsby-plugin-typography`,
-            options: {
-                pathToConfigModule: `src/utils/typography`,
-            },
-        },
         {
             resolve: `gatsby-plugin-plausible`,
             options: {

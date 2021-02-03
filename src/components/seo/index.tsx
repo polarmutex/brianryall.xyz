@@ -13,7 +13,7 @@ interface Props {
     description?: string
     title: string
     slug: string
-    isPost: boolean
+    isPost?: boolean
 }
 
 const Seo = ({ description, title, slug, isPost = false }: Props) => {

@@ -1,14 +1,13 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 
-import Layout from "../components/layout"
 import Pager from "../components/pager"
 import Post from "../components/post"
 import { rhythm, scale } from "../utils/typography"
 
 interface Props {
     data: {
-        allMarkdownRemark: any
+        allMdx: any
         site: {
             siteMetadata: {
                 title: string
@@ -19,11 +18,11 @@ interface Props {
 }
 
 const PostList = ({ data, pageContext }: Props) => {
-    const posts = data.allMarkdownRemark.edges
+    const posts = data.allMdx.edges
     const { tag } = pageContext
 
     return (
-        <Layout>
+        <>
             <h1 style={{ textAlign: "center", marginTop: "80px" }}>Articles</h1>
                 {posts.map(({ node }) => (
                     <Post
@@ -35,7 +34,7 @@ const PostList = ({ data, pageContext }: Props) => {
                     />
                 ))}
             <Pager pageContext={pageContext} />
-        </Layout>
+        </>
     )
 }
 
@@ -43,7 +42,7 @@ export default PostList
 
 export const PostListQuery = graphql`
   query PostListQuery($skip: Int!, $limit: Int!) {
-    allMarkdownRemark(
+    allMdx(
       sort: { order: DESC, fields: [frontmatter___date] }
       limit: $limit
       skip: $skip
@@ -65,4 +64,5 @@ export const PostListQuery = graphql`
     }
   }
 `
+
 

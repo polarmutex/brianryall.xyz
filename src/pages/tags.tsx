@@ -3,7 +3,6 @@ import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import style from "./tags.module.less"
 import { rhythm } from "../utils/typography"
 
 interface Props {
@@ -15,7 +14,7 @@ interface Props {
 const TagsPage = ({ data }: Props) => {
 
     return (
-        <Layout>
+        <>
             <SEO title="Tags" />
             <h1 style={{ textAlign: "center" }}>All Topics</h1>
             <div className={style.container}>
@@ -27,7 +26,7 @@ const TagsPage = ({ data }: Props) => {
                     </Link>
                 ))}
             </div>
-        </Layout>
+        </>
     )
 }
 
@@ -35,7 +34,7 @@ export default TagsPage
 
 export const pageQuery = graphql`
 query {
-    allMarkdownRemark(limit: 3000) {
+    allMdx(limit: 3000) {
       group(field: frontmatter___tags) {
         fieldValue
         totalCount

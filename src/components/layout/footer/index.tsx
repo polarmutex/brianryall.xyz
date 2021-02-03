@@ -10,7 +10,6 @@ import {
     FaPatreon,
     FaRss,
 } from "react-icons/fa"
-import style from "./header.module.less"
 
 const Header = () => {
     const [isMenuCollapsed, setMenuCollapsed] = useState(true)
@@ -20,16 +19,16 @@ const Header = () => {
     }
 
     return (
-        <div className={style.container}>
-            <div className={style.titleContainer}>
-                <div className={style.title}>
+        <div>
+            <div>
+                <div>
                     <Link to={"/"}>
                         <h4>
                             Brian Ryall's Blog
                         </h4>
                     </Link>
                 </div>
-                <div className={style.menuButton}>
+                <div>
                     {isMenuCollapsed ? (
                         <FaBars size="30" onClick={toggleMenu} />
                     ) : (
@@ -37,12 +36,7 @@ const Header = () => {
                     )}
                 </div>
             </div>
-            <div
-                className={[
-                style.list,
-                isMenuCollapsed ? style.collapsedMenu : style.expandedMenu,
-                ].join(" ")}
-            >
+            <div>
                 <ul>
                     <li>
                         <Link to={"/blog"}>Blog</Link>

@@ -1,12 +1,10 @@
 ---
 title: Raspberry Pi Zero W Setup
-date: "2019-10-06T23:46:37.121Z"
+date: 2019-10-06
+updated: 2021-01-31
 draft: false
-slug: "raspberry-pi-zero-w-setup"
-category: "raspberry-pi"
 tags:
   - "hardware"
-description: "Steps to go from nothing to a fully functional raspberry pi zero W"
 ---
 
 Wanted to document how I setup my raspberry pi's
@@ -15,7 +13,7 @@ Wanted to document how I setup my raspberry pi's
 
 Down the latest rasperian from the raspberry [site](https://raspberrypi.org/downloads/raspbian)
 
-i like to use the app <TODO> to flash the sd card
+i like to use the app TODO to flash the sd card
 
 After flashing add the SD card, mount the boot partition anf add a empty file 'SSH' to partition to enable SSH when it boots for the first time. You can also setup wifi on boot by also adding a file named 'wpa_supplicant.conf'to the boot partition with the following contents:
 ```
@@ -31,7 +29,7 @@ network={
 #### Hostname
 
 The raspbian os already includes an avahi server to look for hostnames on the network. And if you use a Mac it does to. I like to name my pis after pies. So I reccomend naming your pis if you plan on having multiple. To change the hostname do it with ```sudo raspi-config'' in the Network option.
-  
+
 #### DNS Server
 If you are not using your routers default DNS you need to edit the '/etc/dhcpcd.conf' file. Near the bottom of the file is an option 'static domain_name_servers=192.168.1.1'. uncomment the line and change the IP to the correct IP.
 
