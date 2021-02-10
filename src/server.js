@@ -4,6 +4,7 @@ const cors = require('cors');
 const compression = require('compression');
 const bodyParser = require('body-parser');
 const sirv = require('sirv');
+
 const dev = process.env.NODE_ENV === 'development';
 
 const { Elder } = require('@elderjs/elderjs');

@@ -1,28 +1,23 @@
 <script>
+    import NavMenu from "../components/NavMenu/NavMenu.svelte"
   export let templateHtml, settings;
 </script>
 
-<style>
-  :global(h1) {
-    font-style: italic;
-  }
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 1rem;
-  }
-
-  :root {
-    --balloon-color: #06395a;
-    --balloon-font-size: 14px;
-  }
+<style global lang="postcss">
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
 </style>
 
 <svelte:head>
-  <link rel="stylesheet" href="/style.css" />
-  <!-- You can remove this balloon it is just for hover effects -->
-  <link rel="stylesheet" href="https://unpkg.com/balloon-css/balloon.min.css" />
+    <link rel="stylesheet" href="/style.css" />
 </svelte:head>
-<div class="container">
-  {@html templateHtml}
+
+<div id="base">
+    <div class="relative bg-darkgrey overflow-hidden">
+        <NavMenu hydrate-client={{}} />
+        <main>
+            {@html templateHtml}
+        </main>
+    </div>
 </div>
