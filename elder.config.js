@@ -26,5 +26,5 @@ module.exports = {
       port: 8080,
     },
   },
-  shortcodes: { closePattern: '}}', openPattern: '{{' },
+  //shortcodes: { closePattern: '}}', openPattern: '{{' },
 };
