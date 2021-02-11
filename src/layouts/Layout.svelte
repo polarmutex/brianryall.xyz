@@ -1,5 +1,5 @@
 <script>
-    import NavMenu from "../components/NavMenu/NavMenu.svelte"
+    import Header from "../components/header.svelte"
   export let templateHtml, settings;
 </script>
 
@@ -14,8 +14,8 @@
 </svelte:head>
 
 <div id="base">
-    <div class="relative bg-darkgrey overflow-hidden">
-        <NavMenu hydrate-client={{}} />
+    <div class="relative bg-gruvbox-light-bg dark:bg-gruvbox-dark-bg text-gruvbox-light-fg dark:text-gruvbox-dark-fg">
+        <Header />
         <main>
             {@html templateHtml}
         </main>
