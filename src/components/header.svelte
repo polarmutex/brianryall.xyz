@@ -1,48 +1,124 @@
 <script>
-    import Fa from 'svelte-fa'
+    import Icon from 'svelte-awesome';
     import { faGithub, faMastodon } from '@fortawesome/free-brands-svg-icons'
     import { faRss, faBars } from '@fortawesome/free-solid-svg-icons'
-    import { FontAwesomeIcon, FontAwesomeLayers, FontAwesomeLayersText } from 'fontawesome-svelte';
 </script>
 
-<nav class="
-    relative
-    max-w-screen-xl
-    mx-auto
-    flex
-    items-center
-    justify-between
-    px-4
-    sm:px-6
-    pt-6
-    pb-6
-    sm:pb-12">
-    <div class="flex items-center flex-1">
-        <div class="flex items-center justify-between w-full md:w-auto">
-            <div class="
-                text-sm
-                font-semibold
-                uppercase
-                tracking-wide
-                text-gray-500
-                sm:text-base
-                lg:text-sm
-                xl:text-base">
-                <a href="/" aria-label="Home" class="">
-                    Brian Ryall
-                    <span class="">@PolarMutex</span>
-                </a>
-            </div>
-        </div>
-        <div class="hidden space-x-10 md:flex md:ml-10">
-            <a href="/blog" class="">
-                Blog
+<style>
+    .container {
+        @apply
+            fixed
+            top-0
+            left-0
+            w-full
+            box-border
+            flex
+            items-center
+            justify-between
+            px-1
+            py-2
+            border-b-0
+            text-3xl
+            ;
+    }
+
+    .titleContainer {
+        @apply
+            flex
+            w-full
+            items-center
+        ;
+    }
+
+    .title {
+        & h4 {
+            @apply
+                m-0
+                px-0
+                py-1
+            ;
+        }
+
+        & p {
+            @apply
+                m-0
+                text-center
+            ;
+        }
+    }
+
+    .list {
+        @apply
+            flex
+            justify-center
+            items-center
+            flex-nowrap
+            text-2xl
+        ;
+        & ul {
+            @apply
+                list-none
+                flex
+                justify-center
+                items-center
+                flex-nowrap
+                h-8
+                mx-0
+                my-1
+                p-0
+            ;
+        }
+    }
+</style>
+
+<!-- container -->
+<div class="container">
+    <!-- title-container -->
+    <div class="titleContainer">
+        <!-- title -->
+        <div class="title">
+            <a href="/" >
+                <h4>Brian Ryall @PolarMutex</h4>
             </a>
         </div>
+        <div class="menuButton">
+            <Icon data={faBars}/>
+        </div>
     </div>
-    <div class="hidden md:flex">
-        <FontAwesomeIcon size="2x" icon={faGithub} />
-        <FontAwesomeIcon size="2x" icon={faRss} class="ml-4" />
-        <FontAwesomeIcon size="2x" icon={faMastodon} class="ml-4" />
+    <div class="list">
+        <ul>
+            <li>
+                <a href="/blog">Blog</a>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <a
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                    href="https://github.com/bryall"
+                >
+                    <Icon data={faGithub}/>
+                </a>
+            </li>
+            <li>
+                <a
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                    href="https://fosstodon.org/bryall"
+                >
+                    <Icon data={faMastodon}/>
+                </a>
+            </li>
+            <li>
+                <a
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                    href="/feed.xml"
+                >
+                    <Icon data={faRss}/>
+                </a>
+            </li>
+        </ul>
     </div>
-</nav>
+</div>
