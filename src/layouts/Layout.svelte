@@ -14,9 +14,9 @@
 </svelte:head>
 
 <div id="base">
-    <div class="relative bg-gruvbox-light-bg dark:bg-gruvbox-dark-bg text-gruvbox-light-fg dark:text-gruvbox-dark-fg">
+    <div class="bg-gruvbox-light-bg dark:bg-gruvbox-dark-bg text-gruvbox-light-fg dark:text-gruvbox-dark-fg">
         <Header />
-        <main>
+        <main class="mt-14">
             {@html templateHtml}
         </main>
     </div>

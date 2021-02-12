@@ -5,8 +5,10 @@
 </script>
 
 <style>
-    .container {
+    .containerz {
         @apply
+            bg-gruvbox-light-bg
+            dark:bg-gruvbox-dark-bg
             fixed
             top-0
             left-0
@@ -17,7 +19,6 @@
             justify-between
             px-1
             py-2
-            border-b-0
             text-3xl
             ;
     }
@@ -64,15 +65,21 @@
                 flex-nowrap
                 h-8
                 mx-0
-                my-1
+                my-0
                 p-0
             ;
+            & li {
+                @apply
+                    mx-2
+                    my-0
+                ;
+            }
         }
     }
 </style>
 
 <!-- container -->
-<div class="container">
+<div class="containerz">
     <!-- title-container -->
     <div class="titleContainer">
         <!-- title -->
@@ -98,7 +105,7 @@
                     rel="nofollow noopener noreferrer"
                     href="https://github.com/bryall"
                 >
-                    <Icon data={faGithub}/>
+                    <Icon data={faGithub} scale="2" />
                 </a>
             </li>
             <li>
@@ -107,7 +114,7 @@
                     rel="nofollow noopener noreferrer"
                     href="https://fosstodon.org/bryall"
                 >
-                    <Icon data={faMastodon}/>
+                    <Icon data={faMastodon} scale="2" />
                 </a>
             </li>
             <li>
@@ -116,7 +123,7 @@
                     rel="nofollow noopener noreferrer"
                     href="/feed.xml"
                 >
-                    <Icon data={faRss}/>
+                    <Icon data={faRss} scale="2" />
                 </a>
             </li>
         </ul>
