@@ -2,6 +2,12 @@
     import Icon from 'svelte-awesome';
     import { faGithub, faMastodon } from '@fortawesome/free-brands-svg-icons'
     import { faRss, faBars } from '@fortawesome/free-solid-svg-icons'
+
+    let isMenuOpen = false
+
+    function handleClickOutside() {
+        if (isMenuOpen) isMenuOpen = false
+    }
 </script>
 
 <style>
@@ -18,8 +24,10 @@
             items-center
             justify-between
             px-1
-            py-2
-            text-3xl
+            py-3
+            text-xl
+            flex-col
+            lg:flex-row
             ;
     }
 
@@ -28,6 +36,7 @@
             flex
             w-full
             items-center
+            justify-between
         ;
     }
 
@@ -54,7 +63,9 @@
             justify-center
             items-center
             flex-nowrap
-            text-2xl
+            text-base
+            flex-col
+            lg:flex-row
         ;
         & ul {
             @apply
@@ -76,6 +87,22 @@
             }
         }
     }
+
+    .expandedMenu {
+    }
+
+    .collapsedMenu {
+        @apply hidden lg:flex;
+    }
+
+    .menuButton {
+        @apply
+            block
+            float-right
+            lg:hidden
+        ;
+    }
+
 </style>
 
 <!-- container -->
@@ -85,27 +112,38 @@
         <!-- title -->
         <div class="title">
             <a href="/" >
-                <h4>Brian Ryall @PolarMutex</h4>
+                <h4>
+                <span class="text-gruvbox-light-blue dark:text-gruvbox-dark-blue">
+                    Brian Ryall
+                </span>
+                <span class="text-gruvbox-light-yellow dark:text-gruvbox-dark-yellow">
+                    @PolarMutex
+                </span>
+                </h4>
             </a>
         </div>
-        <div class="menuButton">
-            <Icon data={faBars}/>
-        </div>
+        <button
+            class="menuButton"
+            on:click={() => isMenuOpen = !isMenuOpen}
+        >
+            <Icon data={faBars} scale="1.5" />
+        </button>
     </div>
-    <div class="list">
-        <ul>
+    <div class="list {isMenuOpen ? 'expandedMenu': 'collapsedMenu'}">
+        <ul class="text-gruvbox-light-green dark:text-gruvbox-dark-green" >
             <li>
                 <a href="/blog">Blog</a>
             </li>
         </ul>
         <ul>
-            <li>
+            <li class="text-white">
                 <a
                     target="_blank"
                     rel="nofollow noopener noreferrer"
                     href="https://github.com/bryall"
+                    class="white"
                 >
-                    <Icon data={faGithub} scale="2" />
+                    <Icon data={faGithub} scale="1.5" style="fill: white" />
                 </a>
             </li>
             <li>
@@ -114,7 +152,7 @@
                     rel="nofollow noopener noreferrer"
                     href="https://fosstodon.org/bryall"
                 >
-                    <Icon data={faMastodon} scale="2" />
+                    <Icon data={faMastodon} scale="1.5" style="fill: #458588" />
                 </a>
             </li>
             <li>
@@ -123,7 +161,7 @@
                     rel="nofollow noopener noreferrer"
                     href="/feed.xml"
                 >
-                    <Icon data={faRss} scale="2" />
+                    <Icon data={faRss} scale="1.5" style="fill: #d65d0e" />
                 </a>
             </li>
         </ul>
