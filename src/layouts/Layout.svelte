@@ -1,5 +1,5 @@
 <script>
-    import Header from "../components/header.svelte"
+    import header from "../components/header.svelte"
   export let templateHtml, settings;
 </script>
 
@@ -13,9 +13,9 @@
     <link rel="stylesheet" href="/style.css" />
 </svelte:head>
 
-<div id="base">
-    <div class="bg-gruvbox-light-bg dark:bg-gruvbox-dark-bg text-gruvbox-light-fg dark:text-gruvbox-dark-fg">
-        <Header />
+<div id="base" class="bg-gruvbox-light-bg dark:bg-gruvbox-dark-bg text-gruvbox-light-fg dark:text-gruvbox-dark-fg" >
+    <div class="">
+        <header hydrate-client={{}} />
         <main class="mt-14">
             {@html templateHtml}
         </main>
