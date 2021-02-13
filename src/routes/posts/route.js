@@ -12,6 +12,6 @@ module.exports = {
   // This is telling the simple markdown plugin, which route to control.
 
   data: {},
-  all: () => [{slug: "blog"}],
-  permalink: ({ request }) => `/${request.slug}/`,
+  all: () => [],
+  permalink: ({ request }) => `/blog/${request.slug}/`,
 };
