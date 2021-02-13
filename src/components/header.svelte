@@ -150,7 +150,7 @@
                 <a
                     target="_blank"
                     rel="nofollow noopener noreferrer"
-                    href="https://fosstodon.org/bryall"
+                    href="https://fosstodon.org/@polarmutex"
                 >
                     <Icon data={faMastodon} scale="1.5" style="fill: #458588" />
                 </a>
