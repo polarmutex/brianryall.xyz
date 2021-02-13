@@ -140,7 +140,7 @@
                 <a
                     target="_blank"
                     rel="nofollow noopener noreferrer"
-                    href="https://github.com/bryall"
+                    href="https://github.com/polarmutex"
                     class="white"
                 >
                     <Icon data={faGithub} scale="1.5" style="fill: white" />
