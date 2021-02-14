@@ -12,7 +12,7 @@
     @apply font-semibold;
   }
   :global(a) {
-    @apply text-gruvbox-light-blue dark:text-gruvbox-dark-blue font-semibold;
+    @apply text-gruvbox-light-red dark:text-gruvbox-dark-red font-semibold;
   }
   :global(strong a) {
     @apply font-bold;
