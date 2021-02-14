@@ -66,6 +66,7 @@
             text-base
             flex-col
             lg:flex-row
+            text-gruvbox-dark-red
         ;
         & ul {
             @apply
@@ -130,7 +131,7 @@
         </button>
     </div>
     <div class="list {isMenuOpen ? 'expandedMenu': 'collapsedMenu'}">
-        <ul class="text-gruvbox-light-green dark:text-gruvbox-dark-green" >
+        <ul>
             <li>
                 <a href="/blog">Blog</a>
             </li>
