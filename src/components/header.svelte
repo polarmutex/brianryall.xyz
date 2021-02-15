@@ -142,9 +142,9 @@
                     target="_blank"
                     rel="nofollow noopener noreferrer"
                     href="https://github.com/polarmutex"
-                    class="white"
+                    class="text-gruvbox-light-fg0 dark:text-gruvbox-dark-fg0"
                 >
-                    <Icon data={faGithub} scale="1.5" style="fill: white" />
+                    <Icon data={faGithub} scale="1.5" />
                 </a>
             </li>
             <li>
@@ -152,8 +152,9 @@
                     target="_blank"
                     rel="nofollow noopener noreferrer"
                     href="https://fosstodon.org/@polarmutex"
+                    class="text-gruvbox-light-blue dark:text-gruvbox-dark-blue"
                 >
-                    <Icon data={faMastodon} scale="1.5" style="fill: #458588" />
+                    <Icon data={faMastodon} scale="1.5" />
                 </a>
             </li>
             <li>
@@ -161,8 +162,9 @@
                     target="_blank"
                     rel="nofollow noopener noreferrer"
                     href="/feed.xml"
+                    class="text-gruvbox-light-orange dark:text-gruvbox-dark-orange"
                 >
-                    <Icon data={faRss} scale="1.5" style="fill: #d65d0e" />
+                    <Icon data={faRss} scale="1.5" />
                 </a>
             </li>
         </ul>
