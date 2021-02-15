@@ -12,7 +12,7 @@
                         <span class="inline-flex justify-end items-center text-gray-600 text-xs font-mono whitespace-nowrap">{item.frontmatter.date}
                         </span>
                         <a
-                            href={`/blog/${item.slug}`}
+                            href={`/${item.slug}`}
                             class="relative -mr-px inline-flex text-sm text-left leading-5 mytext font-medium">
                             <h3
                                 class="mylinkcolors text-base md:text-2xl leading-5 font-medium whitespace-normal ml-4 inline"

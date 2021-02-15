@@ -13,5 +13,5 @@ module.exports = {
 
   data: {},
   all: () => [],
-  permalink: ({ request }) => `/blog/${request.slug}/`,
+  permalink: ({ request }) => `/${request.slug}/`,
 };
