@@ -1,6 +1,30 @@
-<script>
-  export let data; // data is mainly being populated from the /plugins/edlerjs-plugin-markdown/index.js
-  const { html, frontmatter } = data;
+<script type="ts">
+    import Seo from '../../components/SEO.svelte';
+    import type { SEOProps } from '../types/seoProps';
+
+    export let data; // data is mainly being populated from the /plugins/edlerjs-plugin-markdown/index.js
+    export let preview = false;
+
+    const { html, frontmatter } = data;
+
+    //const { seo } = data.content;
+    const seoProps: SEOProps = {
+        title: frontmatter.title,
+        description:  frontmatter.excerpt,
+        pathname: `/${frontmatter.slug}`,
+        image: "",
+        ogTitle: frontmatter.title,
+        ogImage: "",
+        ogDescription:  frontmatter.excerpt,
+        ogType: 'article',
+        twitterTitle: frontmatter.title,
+        twitterDescription: "",
+        twitterImage: "",
+        disableIndex: preview,
+        dateModified: frontmatter.updated,
+        datePublished: frontmatter.date,
+        keywords: frontmatter.tags.join(','),
+    };
 </script>
 
 <style lang="postcss">
@@ -72,13 +96,9 @@
 </style>
 
 <svelte:head>
-  <title>Adam's Blog: {frontmatter.title}</title>
-  <meta charset="UTF-8" />
-  <meta name="description" content={frontmatter.excerpt} />
-  <meta name="keywords" content={frontmatter.tags.join(', ')} />
-  <meta name="author" content={frontmatter.author} />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <Seo options={seoProps} />
 </svelte:head>
+
 <div class="flex flex-col items-start justify-start w-full h-full">
 
   <div class="pb-4 my-4 border-b border-solid">
