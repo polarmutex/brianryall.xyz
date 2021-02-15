@@ -12,7 +12,8 @@
     "dev:server": "nodemon",
     "eslint": "eslint --ext .js .",
     "eslint:fix": "eslint --fix --ext .js .",
-    "prettier:svelte": "prettier --write --plugin-search-dir=. ./**/*.svelte"
+    "prettier:svelte": "prettier --write --plugin-search-dir=. ./**/*.svelte",
+    "test": ""
   },
   "type": "commonjs",
   "engines": {
