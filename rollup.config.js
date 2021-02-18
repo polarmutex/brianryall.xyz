@@ -8,12 +8,26 @@ import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import typescript from '@rollup/plugin-typescript';
 import config from 'sapper/config/rollup.js';
+import sveltePreprocess from 'svelte-preprocess';
 import pkg from './package.json';
+import { mdsvex } from 'mdsvex';
+const postcss = require('./postcss.config');
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
-const { preprocess } = require('./svelte.config');
+
+const preprocess = [
+    mdsvex(),
+    sveltePreprocess({
+        defaults: {
+            script: 'typescript',
+            style: 'postcss',
+        },
+        sourceMap: dev,
+        postcss
+    }),
+]
 
 const onwarn = (warning, onwarn) =>
 	(warning.code === 'MISSING_EXPORT' && /'preload'/.test(warning.message)) ||
@@ -31,11 +45,12 @@ export default {
 				'process.env.NODE_ENV': JSON.stringify(mode)
 			}),
 			svelte({
-				preprocess,
 				compilerOptions: {
 					dev,
 					hydratable: true
-				}
+				},
+                extensions: ['.svelte','.svx'],
+				preprocess,
 			}),
 			url({
 				sourceDir: path.resolve(__dirname, 'src/node_modules/images'),
@@ -83,13 +98,14 @@ export default {
 				'process.env.NODE_ENV': JSON.stringify(mode)
 			}),
 			svelte({
-				preprocess,
 				compilerOptions: {
 					dev,
 					generate: 'ssr',
 					hydratable: true
 				},
-				emitCss: false
+				emitCss: false,
+                extensions: ['.svelte','.svx'],
+				preprocess,
 			}),
 			url({
 				sourceDir: path.resolve(__dirname, 'src/node_modules/images'),
