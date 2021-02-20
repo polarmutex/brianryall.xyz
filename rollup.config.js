@@ -18,7 +18,11 @@ const dev = mode === 'development';
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
 
 const preprocess = [
-    mdsvex(),
+    mdsvex({
+        layout: {
+            blog: path.resolve(__dirname, 'src/layouts/blog.svelte'),
+        },
+    }),
     sveltePreprocess({
         defaults: {
             script: 'typescript',

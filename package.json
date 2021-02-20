@@ -4,11 +4,11 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "run-p watch:*",
-    "watch:dev": "sapper dev",
+    "watch:dev": "sapper dev --ext '.svelte .svx'",
     "watch:css": "postcss src/assets/global.pcss -o static/global.css -w",
     "build": "run-s build:css build:sapper",
     "build:sapper": "sapper build --legacy",
-    "build:export": "sapper export --legacy",
+    "build:export": "sapper export --legacy --ext '.svelte .svx'",
     "export": "run-s build:css build:export",
     "start": "node __sapper__/build",
     "validate": "svelte-check --ignore src/node_modules/@sapper"

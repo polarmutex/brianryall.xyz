@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
 	export function preload() {
-		return this.fetch(`blog.json`).then((r: { json: () => any; }) => r.json()).then((posts: { slug: string; title: string, html: any }[]) => {
+		return this.fetch(`/api/blog.json`).then((r: { json: () => any; }) => r.json()).then((posts: { slug: string; title: string, html: any }[]) => {
 			return { posts };
 		});
 	}

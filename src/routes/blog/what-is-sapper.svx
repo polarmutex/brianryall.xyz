@@ -1,6 +1,7 @@
 ---
 title: What is Sapper?
 slug: what-is-sapper
+date: 2020-06-04
 ---
 
 First, you have to know what [Svelte](https://svelte.dev) is. Svelte is a UI framework with a bold new idea: rather than
