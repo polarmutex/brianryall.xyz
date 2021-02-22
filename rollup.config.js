@@ -11,7 +11,6 @@ import config from 'sapper/config/rollup.js';
 import sveltePreprocess from 'svelte-preprocess';
 import pkg from './package.json';
 import { mdsvex } from 'mdsvex';
-const postcss = require('./postcss.config');
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
@@ -29,7 +28,6 @@ const preprocess = [
             style: 'postcss',
         },
         sourceMap: dev,
-        postcss
     }),
 ]
 
