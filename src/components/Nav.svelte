@@ -46,7 +46,7 @@
             <li class="navbar__item">
                 <a
                     class="navbar__button"
-                    href="https://fosstodon.orm/u/polarmutex">
+                    href="https://fosstodon.org/@polarmutex">
                     <Icon data="{faMastodon}" class="navbar__darkmode" width="1.5rem" height="1.5rem" />
                 </a>
             </li>
