@@ -2,8 +2,8 @@
 
 <script lang="ts">
     import Icon from 'svelte-awesome/components/Icon.svelte';
-    import { faGithub } from '@fortawesome/free-brands-svg-icons';
-    import { faBars } from '@fortawesome/free-solid-svg-icons';
+    import { faGithub, faMastodon } from '@fortawesome/free-brands-svg-icons';
+    import { faBars, faRss } from '@fortawesome/free-solid-svg-icons';
     import { faMoon } from '@fortawesome/free-regular-svg-icons';
     //import ClickOutside from 'svelte-click-outside';
 
@@ -36,6 +36,27 @@
             <!--<li class="navbar__item" class:active={segment === "about"}>
                 <a href="/about">About</a>
             </li>-->
+            <li class="navbar__item">
+                <a
+                    class="navbar__button"
+                    href="https://github.com/polarmutex">
+                    <Icon data="{faGithub}" class="navbar__darkmode" width="1.5rem" height="1.5rem" />
+                </a>
+            </li>
+            <li class="navbar__item">
+                <a
+                    class="navbar__button"
+                    href="https://fosstodon.orm/u/polarmutex">
+                    <Icon data="{faMastodon}" class="navbar__darkmode" width="1.5rem" height="1.5rem" />
+                </a>
+            </li>
+            <li class="navbar__item">
+                <a
+                    class="navbar__button"
+                    href="/rss.xml">
+                    <Icon data="{faRss}" class="navbar__darkmode" width="1.5rem" height="1.5rem" />
+                </a>
+            </li>
             <li class="navbar__item">
                 <button
                     class="navbar__button"

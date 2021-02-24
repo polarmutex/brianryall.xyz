@@ -1,7 +1,7 @@
 <!-- https://webdesign.tutsplus.com/tutorials/how-to-build-a-responsive-multi-level-sticky-footer-with-flexbox--cms-33341 -->
 <script lang="ts">
   import Icon from 'svelte-awesome/components/Icon.svelte';
-  import { faGithub } from '@fortawesome/free-brands-svg-icons';
+  import { faGithub, faMastodon } from '@fortawesome/free-brands-svg-icons';
   import { faRss } from '@fortawesome/free-solid-svg-icons';
 </script>
 
@@ -13,9 +13,9 @@
     <a href="https://github.com/polarmutex" target="_blank" rel="norel noreferrer" aria-label="github">
       <Icon data={faGithub} height="1.5rem" width="1.5rem" />
     </a>
-    <!--<a href={twitter} target="_blank" rel="norel noreferrer" aria-label="twitter" >
-            <Twitter height="1.5rem" width="1.5rem" />
-        </a>-->
+    <a href="https://fosstodon.orm/u/polarmutex" target="_blank" rel="norel noreferrer" aria-label="mastodon" >
+      <Icon data="{faMastodon}" height="1.5rem" width="1.5rem" />
+    </a>
     <a href="/rss.xml" rel="alternate" type="application/rss+xml" aria-label="rss">
       <Icon data="{faRss}" height="1.5rem" width="1.5rem" />
     </a>
@@ -52,7 +52,7 @@
   .icons {
     margin: 0 auto 0.5rem;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     max-width: 220px;
   }
   .icons a {
