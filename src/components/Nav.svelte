@@ -4,8 +4,10 @@
     import Icon from 'svelte-awesome/components/Icon.svelte';
     import { faGithub } from '@fortawesome/free-brands-svg-icons';
     import { faBars } from '@fortawesome/free-solid-svg-icons';
-    import ClickOutside from 'svelte-click-outside';
+    import { faMoon } from '@fortawesome/free-regular-svg-icons';
+    //import ClickOutside from 'svelte-click-outside';
 
+    import { theme } from "../utils/theme"
 	export let segment: string;
 
     let open = false;
@@ -13,190 +15,196 @@
     const toggleMenu = () => {
         open = !open;
     }
+
+    const toggleDarkMode = () => {
+        theme.update(current => (current === "light" ? "dark" : "light"))
+    }
 </script>
 
-<nav>
-    <ul class="menu {open ? 'active' : '' }">
-        <li class="logo">
-            <a
-                rel="prefetch"
-                href="."
-            >
-                <span class="h-8" >Brian Ryall @polarmutex</span>
-            </a>
-        </li>
-        <li class="item">
-            <a
-                rel="prefetch"
-                href="/blog"
-            >
-                Blog
-            </a>
-        </li>
-        <li class="toggle">
-            <ClickOutside on:clickoutside="{() => (open = false)}">
+<nav class="navbar">
+    <div class="navbar__container">
+        <div class="navbar__title">
+            <a href="/" aria-label="logo">Brian Ryall @PolarMutex</a>
+        </div>
+        <ul class="navbar__items">
+            <li class="navbar__item" class:active={segment === "blog"}>
+                <a href="/blog">Blog</a>
+            </li>
+            <!--<li class="navbar__item" class:active={segment === "project"}>
+                <a href="/project">Projects</a>
+            </li>-->
+            <!--<li class="navbar__item" class:active={segment === "about"}>
+                <a href="/about">About</a>
+            </li>-->
+            <li class="navbar__item">
                 <button
-                    on:click="{toggleMenu}"
+                    class="navbar__button"
+                    on:click={toggleDarkMode}
+                    aria-label="toggle darkmode"
                 >
-                    <Icon data="{faBars}" />
+                    <Icon data="{faMoon}" class="navbar__darkmode" width="1.5rem" height="1.5rem" />
                 </button>
-            </ClickOutside>
-        </li>
-    </ul>
+            </li>
+        </ul>
+        <div class="navbar__hamburger" >
+            <input
+                class="navbar__checkbox"
+                on:input|stopPropagation={toggleMenu}
+                type="checkbox"
+                {open}
+                aria-label="toggle menu"
+            />
+            <span class="navbar__hamburger_item--1" />
+            <span class="navbar__hamburger_item--2" />
+            <span class="navbar__hamburger_item--3" />
+        </div>
+    </div>
 </nav>
 
 <style>
-nav {
-    background: #222;
-    padding: 0 15px;
+.navbar {
+    height: 4rem;
+    border-bottom: 0.0625rem var(--color-borders) solid;
+    z-index: 30;
+    background-color: var(--color-alt-bg);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
 }
-
-a {
-    color: white;
-    text-decoration: none;
+.navbar .active a {
+    color: var(--color-shine);
 }
-
-.menu,
-.logo {
-    font-size: 20px;
-    padding: 7.5px 10px 7.5px 0;
-}
-
-.item {
-    padding: 10px;
-}
-
-.item.button {
-    padding: 9px 5px;
-}
-
-.item:not(.button) a:hover,
-.item a:hover::after {
-    color: #ccc;
-}
-
-/* Mobile menu */
-
-.menu {
+.navbar__container {
+    height: 100%;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
     align-items: center;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
-
-.menu li a {
-    display: block;
-    padding: 15px 5px;
+.navbar__title {
+    flex: 1;
 }
-
-.menu li.subitem a {
-    padding: 15px;
+.navbar__title a {
+    font-weight: 400;
+    text-decoration: none;
+    color: var(--color-main-text);
+    transition: color ease-out 0.1s;
 }
-
-.toggle {
-    order: 1;
-    font-size: 20px;
+.navbar__title a:hover {
+    color: var(--color-main-accent);
 }
-
-.item.button {
-  order: 2;
+.navbar__items {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-items: center;
 }
-
-.item {
-    order: 3;
-    width: 100%;
-    text-align: center;
+.navbar__item {
+    padding-top: 0.25rem;
+}
+.navbar__item a {
+    font-family: "Overpass", sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.5em;
+    position: relative;
+    color: var(--color-alt-text);
+    text-decoration: none;
+    transition: color ease-out 0.1s;
+}
+.navbar__item a:hover {
+    color: var(--color-shine);
+}
+.navbar__item a:hover::after {
+    transform: scale(1);
+}
+.navbar__item a::after {
+    content: "";
+    position: absolute;
+    bottom: -0.25rem;
+    left: 0;
+    right: 0;
+    height: 0.125rem;
+    background-color: var(--color-main-accent);
+    transform: scale(0);
+    transition: transform ease-out 0.2s;
+}
+.navbar__hamburger {
     display: none;
+    cursor: pointer;
 }
-
-.active .item {
-    display: block;
+.navbar__checkbox {
+    opacity: 0;
 }
-
-.button.secondary {
-    /* divider between buttons and menu links */
-    border-bottom: 1px #444 solid;
+.navbar__button {
+    border: none;
+    background: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    color: var(--color-main-text);
+    cursor: pointer;
 }
-
-/* Tablet menu */
-
-@media all and (min-width: 700px) {
-    .menu {
-        justify-content: center;
+@media only screen and (max-width: 480px) {
+    .navbar__items {
+        display: none;
     }
-
-    .logo {
-        flex: 1;
+    .navbar__hamburger {
+        position: relative;
+        display: grid;
+        grid-template-rows: repeat(3, 1fr);
+        gap: 0.25rem;
+        width: 1.5rem;
+        height: 0.85rem;
     }
-
-    .item.button {
-        width: auto;
-        order: 1;
-        display: block;
+    .navbar__checkbox {
+        position: absolute;
+        min-width: 1.5rem;
+        min-height: 1.5rem;
+        z-index: 50;
     }
-
-    .toggle {
-        flex: 1;
-        text-align: right;
-        order: 2;
+    .navbar__checkbox:checked ~ .navbar__hamburger_item--1 {
+        transform: rotate(45deg) translate3d(0, 0.5rem, 0);
     }
-
-    /* Button up from tablet screen */
-    .menu li.button a {
-        padding: 10px 15px;
-        margin: 5px 0;
+    .navbar__checkbox:checked ~ .navbar__hamburger_item--2 {
+        transform: scale(0);
     }
-
-    .button a {
-        background: #0080ff;
-        border: 1px royalblue solid;
+    .navbar__checkbox:checked ~ .navbar__hamburger_item--3 {
+        transform: rotate(-45deg) translate3d(0, -0.5rem, 0);
     }
-
-    .button.secondary {
-        border: 0;
-    }
-
-    .button.secondary a {
-        background: transparent;
-        border: 1px #0080ff solid;
-    }
-
-    .button a:hover {
-        text-decoration: none;
-    }
-
-    .button:not(.secondary) a:hover {
-        background: royalblue;
-        border-color: darkblue;
-    }
-}
-
-/* Desktop menu */
-
-@media all and (min-width: 960px) {
-    .menu {
-        align-items: flex-start;
-        flex-wrap: nowrap;
-        background: none;
-    }
-
-    .logo {
-        order: 0;
-    }
-
-    .item {
-        order: 1;
+    [class^="navbar__hamburger_item"] {
         position: relative;
         display: block;
-        width: auto;
+        background-color: var(--color-main-text);
+        transition: transform ease-out 0.2s;
     }
-
-    .button {
-        order: 2;
+    .navbar__mobile {
+        position: fixed;
+        z-index: 20;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--color-alt-bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-
-    .toggle {
-        display: none;
+    .navbar__mobile_items {
+        display: grid;
+        grid-template-rows: repeat(5, 1fr);
+        align-items: center;
+        justify-items: center;
+        gap: 2rem;
+        list-style: none;
+    }
+    .navbar__mobile_item a {
+        font-family: "Overpass", sans-serif;
+        text-decoration: none;
+        font-size: 1.5rem;
+        color: var(--color-main-text);
     }
 }
 </style>

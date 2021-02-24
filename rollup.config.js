@@ -25,7 +25,6 @@ const preprocess = [
     sveltePreprocess({
         defaults: {
             script: 'typescript',
-            style: 'postcss',
         },
         sourceMap: dev,
     }),
