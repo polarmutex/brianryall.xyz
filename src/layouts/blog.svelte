@@ -2,7 +2,6 @@
     import dayjs from "dayjs"
     import { stores } from "@sapper/app"
     import SEO from "../components/SEO.svelte"
-    import type { SEOProps } from '../types/seoProps';
     export let title, date, desc, tags
 
     const { page } = stores()
@@ -10,15 +9,10 @@
 
     let content
 
-    const seoProps: SEOProps = {
-    }
-
 </script>
 
 <svelte:head>
 </svelte:head>
-
-<SEO options={seoProps} />
 
 <section class="post">
     <h1 class="post__title">{title}</h1>

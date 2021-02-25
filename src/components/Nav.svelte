@@ -40,21 +40,21 @@
                 <a
                     class="navbar__button"
                     href="https://github.com/polarmutex">
-                    <Icon data="{faGithub}" class="navbar__darkmode" width="1.5rem" height="1.5rem" />
+                    <Icon data="{faGithub}" class="color: var(--color-main-text);" width="1.5rem" height="1.5rem" />
                 </a>
             </li>
             <li class="navbar__item">
                 <a
                     class="navbar__button"
                     href="https://fosstodon.org/@polarmutex">
-                    <Icon data="{faMastodon}" class="navbar__darkmode" width="1.5rem" height="1.5rem" />
+                    <Icon data="{faMastodon}" style="color: var(--color-bright-blue);" width="1.5rem" height="1.5rem" />
                 </a>
             </li>
             <li class="navbar__item">
                 <a
                     class="navbar__button"
                     href="/rss.xml">
-                    <Icon data="{faRss}" class="navbar__darkmode" width="1.5rem" height="1.5rem" />
+                    <Icon data="{faRss}" style="color: var(--color-bright-orange);" width="1.5rem" height="1.5rem" />
                 </a>
             </li>
             <li class="navbar__item">
@@ -63,7 +63,7 @@
                     on:click={toggleDarkMode}
                     aria-label="toggle darkmode"
                 >
-                    <Icon data="{faMoon}" class="navbar__darkmode" width="1.5rem" height="1.5rem" />
+                    <Icon data="{faMoon}" style="color: var(--color-bright-yellow);" width="1.5rem" height="1.5rem" />
                 </button>
             </li>
         </ul>

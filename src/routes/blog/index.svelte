@@ -163,7 +163,7 @@
 }
 .posts__cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(50rem, 1fr));
     gap: 1.25rem;
     margin-top: 1rem;
 }
