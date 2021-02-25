@@ -4,6 +4,7 @@
     import { theme } from "../utils/theme"
 	import Nav from '../components/Nav.svelte';
 	import Footer from '../components/Footer.svelte';
+	import Plausible from '../components/Plausible.svelte';
 
 	export let segment: string;
 
@@ -33,8 +34,6 @@
             document.documentElement.setAttribute("data-theme", current)
         })
     })
-
-    const dev = process.env.NODE_ENV === 'production';
 </script>
 
 <svelte:head>
@@ -53,11 +52,6 @@
             console.log(err)
         }
     </script>
-
-    {#if dev}
-        <script async defer data-domain="brianryall.xyz" src="https://stats.brianryall.xyz/js/plausible.js"></script>
-    {/if}
-
 </svelte:head>
 
 <Nav {segment}/>
