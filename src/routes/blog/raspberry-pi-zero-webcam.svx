@@ -1,5 +1,6 @@
 ---
 title: Setting up your raspberry pi zero as a webcam
+slug: raspberry-pi-zero-webcam
 date: 2021-02-07
 draft: true
 tags:

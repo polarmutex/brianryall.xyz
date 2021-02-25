@@ -1,50 +1,32 @@
-<script>
-	import successkid from 'images/successkid.jpg';
+<script lang="ts">
+  export let data, helpers;
+  import Seo from "../components/SEO.svelte"
+  import type { SEOProps } from '../../types/seoProps';
+  const seoProps: SEOProps = {};
 </script>
 
+<Seo options={seoProps} />
+
+<main class="main">
+    <h1>Hello world!</h1>
+    <p>
+My name is Brian. I am a senior software engineer. This is my home
+for my journey to improve my skills and share my knowledge and
+intersets. My goal for this site is to be my plot of land on the
+internet, to own and control and to be a light to the world.
+Thank you for following me on this journey!
+    </p>
+
+    <h2>Projects</h2>
+
+    <h2>Posts</h2>
+</main>
+
 <style>
-	h1, figure, p {
-		text-align: center;
-		margin: 0 auto;
-	}
-
-	h1 {
-		font-size: 2.8em;
-		text-transform: uppercase;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
-	}
-
-	figure {
-		margin: 0 0 1em 0;
-	}
-
-	img {
-		width: 100%;
-		max-width: 400px;
-		margin: 0 0 1em 0;
-	}
-
-	p {
-		margin: 1em auto;
-	}
-
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
-		}
-	}
+.main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2rem 1rem 0;
+  z-index: 2;
+}
 </style>
-
-<svelte:head>
-	<title>Sapper project template</title>
-</svelte:head>
-
-<h1>Great success!</h1>
-
-<figure>
-	<img alt="Success Kid" src="{successkid}">
-	<figcaption>Have fun with Sapper!</figcaption>
-</figure>
-
-<p><strong>Try editing this file (src/routes/index.svelte) to test live reloading.</strong></p>

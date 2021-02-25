@@ -1,7 +1,7 @@
 ---
 title: 2021 and the 100 days to offload
+slug: 100-days-to-offload
 date: 2021-02-03
-draft: true
 tags:
   - "100DaysToOffload"
   - "blogging"
