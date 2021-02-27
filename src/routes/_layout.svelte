@@ -54,6 +54,7 @@
     </script>
 </svelte:head>
 
+<Plausible />
 <Nav {segment}/>
 <main>
     <div>
