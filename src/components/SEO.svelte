@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { SEOProps } from '../types/seoProps';
+import type SEOProps from '../types/seoProps';
   export let options: SEOProps;
   const title = options.title ?? 'Brian Ryall | Developer';
   const description =

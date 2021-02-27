@@ -10,6 +10,7 @@
 
 <script lang="ts">
     import SEO from "../../components/SEO.svelte"
+    import type SEOProps from '../../types/seoProps';
     import PostCard from "../../components/PostCard.svelte"
     import Tag from "../../components/Tag.svelte"
 
@@ -55,10 +56,8 @@
 </script>
 
 <svelte:head>
-	<title>Blog</title>
+    <SEO options={seoProps} />
 </svelte:head>
-
-<SEO options={seoProps} />
 
 <section class="posts">
     <h1 class="posts__title">Blog</h1>
