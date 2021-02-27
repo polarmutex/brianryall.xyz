@@ -13,7 +13,7 @@
         <div class="card__date">
             <span class="date__label">{dayjs(date).format("DD MMMM YYYY")}</span>
         </div>
-        <p class="card__desc">{desc}</p>
+        <p class="card__desc"><!--{desc}--></p>
         <div class="card__tags">
             {#each tags as tag}<span class="card__tag">{tag}</span>{/each}
         </div>

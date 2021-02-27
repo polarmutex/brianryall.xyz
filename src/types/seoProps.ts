@@ -1,4 +1,4 @@
-export interface SEOProps {
+export default interface SEOProps {
     title?: string;
     description?: string;
     pathname?: string;

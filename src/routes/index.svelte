@@ -1,11 +1,13 @@
 <script lang="ts">
   export let data, helpers;
   import Seo from "../components/SEO.svelte"
-  import type { SEOProps } from '../../types/seoProps';
+  import type SEOProps from '../types/seoProps';
   const seoProps: SEOProps = {};
 </script>
 
-<Seo options={seoProps} />
+<svelte:head>
+    <Seo options={seoProps} />
+</svelte:head>
 
 <main class="main">
     <h1>Hello world!</h1>

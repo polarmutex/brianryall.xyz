@@ -1,4 +1,4 @@
-<script lang="ts" >
+<script>
     import dayjs from "dayjs"
     import { stores } from "@sapper/app"
     import SEO from "../components/SEO.svelte"
@@ -7,13 +7,14 @@
     const { page } = stores()
     const currentSlug = $page.path.split("/")[2]
 
-    let content
+    const seoProps = {
+    }
+
+    let content;
 
 </script>
 
-<svelte:head>
-</svelte:head>
-
+<SEO options={seoProps} />
 <section class="post">
     <h1 class="post__title">{title}</h1>
     <span class="post__date">
