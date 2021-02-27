@@ -1,0 +1,143 @@
+@media (prefers-color-scheme: light) {
+    :root {
+        --color-dark0-hard:         #1d2021;
+        --color-dark0:              #282828;
+        --color-dark0_soft:         #32302f;
+        --color-dark1:              #3c3836;
+        --color-dark2:              #504945;
+        --color-dark3:              #665c54;
+        --color-dark4:              #7c6f64;
+        --color-dark4-256:          #7c6f64;
+        --color-gray-245:           #928374;
+        --color-gray-244:           #928374;
+        --color-light0-hard:        #f9f5d7;
+        --color-light0:             #fbf1c7;
+        --color-light0-soft:        #f2e5bc;
+        --color-light1:             #ebdbb2;
+        --color-light2:             #d5c4a1;
+        --color-light3:             #bdae93;
+        --color-light4:             #a89984;
+        --color-light4-256:         #a89984;
+        --color-bright-red:         #fb4934;
+        --color-bright-green:       #b8bb26;
+        --color-bright-yellow:      #fabd2f;
+        --color-bright-blue:        #83a598;
+        --color-bright-purple:      #d3869b;
+        --color-bright-aqua:        #8ec07c;
+        --color-bright-orange:      #fe8019;
+        --color-neutral-red:        #cc241d;
+        --color-neutral-green:      #98971a;
+        --color-neutral-yellow:     #d79921;
+        --color-neutral-blue:       #458588;
+        --color-neutral-purple:     #b16286;
+        --color-neutral-aqua:       #689d6a;
+        --color-neutral-orange:     #d65d0e;
+        --color-faded-red:          #9d0006;
+        --color-faded-green:        #79740e;
+        --color-faded-yellow:       #b57614;
+        --color-faded-blue:         #076678;
+        --color-faded-purple:       #8f3f71;
+        --color-faded-aqua:         #427b58;
+        --color-faded-orange        #af3a03;
+
+        --color-main-accent: #83a598;
+        --color-main-bg: #f9f5d7;
+        --color-alt-bg: #fbf1c7;
+        --color-special-bg: #ebdbb2;
+        --color-main-text: #3c3836;
+        --color-alt-text: #7c6f64;
+        --color-borders: #665c54;
+    }
+
+    /* set dark colours if user overrides it */
+    [data-theme="dark"] {
+        --color-main-accent: #83a598;
+        --color-main-bg: #1d2021;
+        --color-alt-bg: #282828;
+        --color-special-bg: #3c3836;
+        --color-main-text: #ebdbb2;
+        --color-alt-text: #a89984;
+        --color-borders: #bdae93;
+        --filter-invert: invert(100%);
+    }
+
+    [data-theme="dark"] img {
+        filter: brightness(0.9) contrast(1.2);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-main-accent: #83a598;
+        --color-main-bg: #1d2021;
+        --color-alt-bg: #282828;
+        --color-special-bg: #3c3836;
+        --color-main-text: ;#ebdbb2
+        --color-alt-text: #a89984;
+        --color-borders: #bdae93;
+        --color-bright-red:         #fb4934;
+        --color-bright-green:       #b8bb26;
+        --color-bright-yellow:      #fabd2f;
+        --color-bright-blue:        #83a598;
+        --color-bright-purple:      #d3869b;
+        --color-bright-aqua:        #8ec07c;
+        --color-bright-orange:      #fe8019;
+        --filter-invert: invert(100%);
+    }
+
+    /* set light colours if user overrides it */
+    [data-theme="light"] {
+        --color-main-accent: #83a598;
+        --color-main-bg: #f9f5d7;
+        --color-alt-bg: #fbf1c7;
+        --color-special-bg: #ebdbb2;
+        --color-main-text: #3c3836;
+        --color-alt-text: #7c6f64;
+        --color-borders: #665c54;
+        --color-bright-red:         #fb4934;
+        --color-bright-green:       #b8bb26;
+        --color-bright-yellow:      #fabd2f;
+        --color-bright-blue:        #83a598;
+        --color-bright-purple:      #d3869b;
+        --color-bright-aqua:        #8ec07c;
+        --color-bright-orange:      #fe8019;
+        --filter-invert: invert(0);
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: color ease-out 0.1s, background-color ease-out 0.1s;
+}
+
+html,
+body {
+    height: 100%;
+    height: 100%;
+}
+
+html {
+    scrollbar-color: var(--color-thin) var(--color-special-bg);
+}
+
+body {
+    background-color: var(--color-main-bg);
+    overflow-x: hidden;
+}
+
+html::-webkit-scrollbar-thumb {
+    background-color: var(--color-main-accent);
+}
+
+html::-webkit-scrollbar {
+    background-color: var(--color-special-bg);
+    width: 0.5rem;
+}
+
+/* keep this just in case */
+/* /1* fix svelte-image *1/ */
+/* div.wrapper { */
+/*   display: block !important; */
+/* } */
