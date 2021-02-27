@@ -1,5 +1,5 @@
 module.exports = {
-  origin: '', // TODO: update this.
+  origin: 'brianryall.xyz', // TODO: update this.
   lang: 'en',
   srcDir: 'src',
   distDir: 'public',
