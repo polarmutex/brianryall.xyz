@@ -1,0 +1,96 @@
+---
+title: Using pre-commit hooks to ensure development workflow
+slug: python-formatting-linting-with-pre-commit-hooks
+date: 2021-03-04
+tags:
+  - "python"
+  - "dev-tools"
+draft: true
+---
+
+I just recently learned about [pre-commit](https://pre-commit.com) hooks. Pre-commit hooks are a great way to ensure the commits you make are meeting standards you set. You can auto format, lint, ant generate documents automatically when you try to commit to a repo. Below I will show you how to installl and configure the four pre-commit hooks I use on my python projests: isort, black, mypy, and flake8
+
+## Installing pre-commit
+
+- Install using pip
+```shell
+pip install pre-commit
+```
+- Install using poetry
+```shell
+poetry add pre-commit
+```
+
+## Configurating pre-commit
+
+Configuration of pre-commit is done in the file ```.pre-commit-config.yaml```. In this file you define your hooks that you want to run on every commit.
+
+```yaml
+# .pre-commit-config.yaml
+
+repos:
+  - repo: example-repo
+    rev: v1.0
+    hooks:
+    - id: hook-name
+```
+
+## Installing the git hook scripts
+
+Run the following to tell git to run your pre-commit hooks
+
+```shell
+pre-commit install
+```
+
+## Running pre-commit on its own
+
+If you want to run pre-commit on its own to test or see the results run the following
+
+```shell
+pre-commit run --all-files
+```
+
+If you want to run just a single hook run the following
+
+```shell
+pre-commit run <hook-id>
+```
+
+## Pre-Commit Hooks
+
+It is worth to look the following [repo](https://github.com/pre-commit/pre-commit-hooks) to see some example pre-commit hooks
+
+### Setup black
+
+  - repo: https://github.com/psf/black
+    rev: 20.8b1
+    hooks:
+      - id: black
+        args: [--line-length=88]
+        files: ^fava_envelope/
+
+### Setup isort
+
+  - repo: local
+    hooks:
+      - id: system
+        name: isort
+        entry: poetry run isort .
+        pass_filenames: false
+        language: system
+
+### Setup mypy
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v0.812
+    hooks:
+    - id: mypy
+      exclude: ^(docs/|tests)
+
+#### Setup flake8
+
+  - repo: https://gitlab.com/pycqa/flake8
+    rev: 3.8.4
+    hooks:
+      - id: flake8
