@@ -22,7 +22,7 @@
   </div>
   <p>
     Powered by
-    <a class="hl" href="https://sapper.svelte.dev">Sapper</a>
+    <a class="hl" href="https://kit.svelte.dev">SapperKit</a>
     • Source code is available on
     <a class="hl" href="https://github.com/polarmutex/brianryall.xyz">Github</a>
   </p>

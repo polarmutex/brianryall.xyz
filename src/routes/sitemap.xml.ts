@@ -1,7 +1,7 @@
-import { allPosts } from './blog/_posts';
+import posts from './blog/_posts';
 
 import fs from 'fs';
-import type { Post } from '../types/post';
+import type { Post } from '$lib/types/post';
 
 const BASE_URL = 'https://brianryall.xyz';
 const pages = [''];
@@ -20,7 +20,9 @@ fs.readdirSync('./src/routes').forEach((file) => {
   }
 });
 
-const render = (pages: string[], posts: Post[]) => `<?xml version="1.0" encoding="UTF-8" ?>
+const render = (
+    pages: string[], posts: Post[]
+) => `<?xml version="1.0" encoding="UTF-8" ?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   ${pages
     .map(
@@ -42,11 +44,9 @@ const render = (pages: string[], posts: Post[]) => `<?xml version="1.0" encoding
 </urlset>
 `;
 
-/* eslint-disable-next-line */
-export function get(req: any, res: any, next: any): void {
-  res.setHeader('Cache-Control', `max-age=0, s-max-age=${600}`); // 10 minutes
-  res.setHeader('Content-Type', 'application/rss+xml');
-
-  const sitemap = render(pages, allPosts);
-  res.end(sitemap);
+export function get() {
+  const sitemap = render(pages, posts);
+  return {
+      body: sitemap,
+  }
 }
