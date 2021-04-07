@@ -1,20 +1,26 @@
 <script context="module" lang="ts">
-	export function preload() {
-		return this.fetch(`/api/blog.json`)
-            .then((r: { json: () => any; }) => r.json())
-            .then((posts: { slug: string; title: string, html: any }[]) => {
-			    return { posts };
-		});
+	export async function load({ fetch }: LoadInput) {
+        try {
+		    const posts_json = await fetch(`/api/blog.json`);
+            const posts = await posts_json.json();
+            return { props: { posts } };
+        }
+        catch (error) {
+            console.error(error);
+        }
 	}
 </script>
 
 <script lang="ts">
+    import type { LoadInput } from '@sveltejs/kit/types.internal';
+    import type Post from '$lib/types/post';
+    import type SEOProps from '$lib/types/seoProps';
+
     import SEO from "$lib/components/SEO.svelte"
-    import type SEOProps from '$types/seoProps';
     import PostCard from "$lib/components/PostCard.svelte"
     import Tag from "$lib/components/Tag.svelte"
 
-	export let posts: { slug: string; title: string, html: any }[];
+	export let posts: Post[];
     let inputBox = null
     let keyword = ""
     let tagKeyword = ""
