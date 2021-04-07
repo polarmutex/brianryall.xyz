@@ -13,11 +13,11 @@ function getAllFiles(directory, fileArray) {
     fileArray = fileArray || [];
 
     files.forEach((file) => {
-        if(fs.statSync(`${directory}/${file}`).isDirectory()) {
+        if (fs.statSync(`${directory}/${file}`).isDirectory()) {
             fileArray = getAllFiles(`${directory}/${file}`, fileArray);
         } else {
-            const filePath = path.join(`${directory}/${file}`) ;
-            if(path.extname(filePath) === '.md' || path.extname(filePath) === '.svx') {
+            const filePath = path.join(`${directory}/${file}`);
+            if (path.extname(filePath) === '.md' || path.extname(filePath) === '.svx') {
                 fileArray.push(filePath);
             }
         }
@@ -26,10 +26,10 @@ function getAllFiles(directory, fileArray) {
 }
 
 const posts = fs
-    .readdirSync('./src/posts')
+    .readdirSync('./data/posts')
     .filter((elem) => elem.endsWith('.svx'))
     .map((postFilename): Post => {
-        const postContent = fs.readFileSync(`./src/posts/${postFilename}`, {
+        const postContent = fs.readFileSync(`./data/posts/${postFilename}`, {
             encoding: 'utf8',
         });
 
@@ -45,6 +45,6 @@ const posts = fs
         };
     })
     .filter((post) => !post.hidden)
-    .sort((a,b) => new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime())
+    .sort((a, b) => new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime())
 
 export default posts
