@@ -1,10 +1,10 @@
 <script lang="ts">
     import { afterUpdate } from 'svelte';
     import { onMount } from "svelte"
-    import { theme } from "../utils/theme"
-	import Nav from '../components/Nav.svelte';
-	import Footer from '../components/Footer.svelte';
-	import Plausible from '../components/Plausible.svelte';
+    import { theme } from "$lib/utils/theme"
+	import Nav from '$lib/components/Nav.svelte';
+	import Footer from '$lib/components/Footer.svelte';
+	import Plausible from '$lib/components/Plausible.svelte';
 
 	export let segment: string;
 

@@ -1,7 +1,7 @@
 <script lang="ts">
   export let data, helpers;
-  import Seo from "../components/SEO.svelte"
-  import type SEOProps from '../types/seoProps';
+  import Seo from "$lib/components/SEO.svelte"
+  import type SEOProps from '$types/seoProps';
   const seoProps: SEOProps = {};
 </script>
 
