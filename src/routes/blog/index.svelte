@@ -9,10 +9,10 @@
 </script>
 
 <script lang="ts">
-    import SEO from "../../components/SEO.svelte"
-    import type SEOProps from '../../types/seoProps';
-    import PostCard from "../../components/PostCard.svelte"
-    import Tag from "../../components/Tag.svelte"
+    import SEO from "$lib/components/SEO.svelte"
+    import type SEOProps from '$types/seoProps';
+    import PostCard from "$lib/components/PostCard.svelte"
+    import Tag from "$lib/components/Tag.svelte"
 
 	export let posts: { slug: string; title: string, html: any }[];
     let inputBox = null
