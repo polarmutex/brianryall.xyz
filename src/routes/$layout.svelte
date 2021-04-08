@@ -6,6 +6,7 @@
   import Footer from '$lib/components/Footer.svelte';
   import Plausible from '$lib/components/Plausible.svelte';
   import 'virtual:windi.css';
+  import './global.css';
 
   export let segment: string;
 
@@ -27,37 +28,37 @@
     }
 
     theme.set(preference);
+
     theme.subscribe((current) => {
       localStorage.setItem('theme', current);
-      document.documentElement.setAttribute('data-theme', current);
+      if (localStorage.theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
     });
   });
 </script>
 
-<style>
-  main {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  div {
-    flex: 1;
-    margin-top: 4.5rem;
-  }
-</style>
-
 <svelte:head>
   <link rel="canonical" href={fullURL} />
-  <script>
+  <script lang="ts">
     // set dark mode correctly before everythings get rendered
     // thanks https://github.com/pveyes
     try {
       // prettier-ignore
       const { matches: isDarkMode } = window.matchMedia( "(prefers-color-scheme: dark)")
       let preference;
-      if (localStorage.getItem('theme')) preference = localStorage.getItem('theme');
-      else preference = isDarkMode ? 'dark' : 'light';
-      if (preference) document.documentElement.setAttribute('data-theme', preference);
+      if (localStorage.getItem('theme')) {
+        preference = localStorage.getItem('theme');
+      } else {
+        preference = isDarkMode ? 'dark' : 'light';
+      }
+      if (preference === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
     } catch (err) {
       console.log(err);
     }
@@ -65,10 +66,11 @@
 </svelte:head>
 
 <Plausible />
-<Nav {segment} />
-<main>
-  <div>
-    <slot />
-  </div>
-  <Footer />
+
+<Nav />
+
+<main class="main">
+  <slot />
 </main>
+
+<Footer />
