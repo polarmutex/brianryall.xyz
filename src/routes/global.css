@@ -51,3 +51,7 @@ body {
 .main .card {
   @apply relative bg-white border rounded shadow-xl w-full;
 }
+
+.main .main-container {
+    @apply px-3 py-12 mx-auto;
+}

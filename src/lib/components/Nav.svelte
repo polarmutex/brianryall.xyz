@@ -12,7 +12,6 @@
 
   const toggleMenu = () => {
     open = !open;
-    console.log(open);
   };
 
   const toggleDarkMode = () => {
@@ -41,7 +40,7 @@
         </button>
       </ClickOutside>
     </div>
-    <nav class:hidden={!open} class="w-full ml-auto md:flex md:w-auto">
+    <nav class:hidden={!open} class="w-full ml-auto md:flex md:w-auto hidden">
       <a class="nav-link md:inline-block md:mt-0" href="/blog">Blog</a>
       <a class="nav-link md:inline-block md:mt-0" href="https://github.com/polarmutex">
         <Icon data={faGithub} />
