@@ -8,15 +8,15 @@ tags:
   - "hardware"
 ---
 
-Wanted to document how I setup my raspberry pi's
+Wanted to document how I set up my raspberry pi's
 
 ### Getting the software
 
 Down the latest rasperian from the raspberry [site](https://raspberrypi.org/downloads/raspbian)
 
-i like to use the app TODO to flash the sd card
+I like to use the app TODO to flash the sd card
 
-After flashing add the SD card, mount the boot partition anf add a empty file 'SSH' to partition to enable SSH when it boots for the first time. You can also setup wifi on boot by also adding a file named 'wpa_supplicant.conf'to the boot partition with the following contents:
+After flashing add the SD card, mount the boot partition anf add a empty file 'SSH' to partition to enable SSH when it boots for the first time. You can also set up Wi-Fi on boot by also adding a file named 'wpa_supplicant.conf'to the boot partition with the following contents:
 ```
 country=<Your Country Code>
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdevupdate_config=1

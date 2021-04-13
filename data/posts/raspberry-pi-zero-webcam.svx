@@ -12,7 +12,7 @@ tags:
 
 With the increasing reports of privacy violations by various corporations, I am not very trusting of any camera in my house. So this post is the begining of my journey to create a security camera to keep an eye on my house and to notify me of people at my door like you would buy in a store. Now it would be way cheaper and less hassle to just buy a device to meet this need, but I love to piede togather lots of projects to make this happen.
 
-The first step needed is to get video and access it over the network. I found this cool project on github to generate a real time streaming protocol(RTSP) stream from a linux video feed. The project is called [v4l2rtspserver](https://github.com/mpromonet/v4l2rtspserver) and the steps below show what I had to do to get it running on my raspberry pi zero.
+The first step needed is to get video and access it over the network. I found this cool project on gitHub to generate a real time streaming protocol(RTSP) stream from a linux video feed. The project is called [v4l2rtspserver](https://github.com/mpromonet/v4l2rtspserver) and the steps below show what I had to do to get it running on my raspberry pi zero.
 
 ## Installing v4l2rtspserver
 
