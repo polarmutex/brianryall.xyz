@@ -1,5 +1,6 @@
 const { mdsvex } = require("mdsvex");
 const mdsvexConfig = require("./mdsvex.config.cjs");
+const windicss = require("vite-plugin-windicss");
 const sveltePreprocess = require('svelte-preprocess');
 const adapter_static = require('@sveltejs/adapter-static');
 const pkg = require('./package.json');
@@ -24,7 +25,22 @@ module.exports = {
         vite: {
             ssr: {
                 noExternal: Object.keys(pkg.dependencies || {})
-            }
-        }
+            },
+
+            plugins: [
+                windicss.default({
+                    scan: {
+                        dirs: [
+                            './src'
+                        ],
+                        fileExtensions: [
+                            'svelte',
+                            'ts',
+                            'css',
+                        ]
+                    }
+                })
+            ]
+        },
     }
 };

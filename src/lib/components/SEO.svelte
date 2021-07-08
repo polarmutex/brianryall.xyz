@@ -1,128 +1,105 @@
 <script lang="ts">
-import type SEOProps from '../types/seoProps';
-  export let options: SEOProps;
-  const title = options.title ?? 'Brian Ryall | Developer';
-  const description =
-    options.description ??
-    "delveloper writing about things I find interesting";
-  const pathname = options.pathname ?? '';
-  const url = `https://brianryall.xyz${pathname}`;
-  const image =
-    options.image ??
-    '';
-  const ogTitle = options.ogTitle ?? title;
-  const ogDescription = options.ogDescription ?? description;
-  const ogType = options.ogType ?? 'website';
-  const ogImage = options.ogImage ?? image;
-  const twitterUsername = 'polarmutex';
-  const twitterTitle = options.twitterTitle ?? title;
-  const twitterDescription = options.twitterDescription ?? description;
-  const twitterImage = options.twitterImage ?? image;
-  const disableIndex = options.disableIndex ?? true;
-  const jsonLd = (content) => `<${'script'} type="application/ld+json">${JSON.stringify(content)}</${'script'}>`;
-  const jsonLdGraph: any[] = [
-    {
-      '@context': 'http://www.schema.org',
-      '@type': 'person',
-      name: 'Brian Ryall',
-      jobTitle: 'developer',
-      gender: 'male',
-      url: 'https://brianryall.xyz',
-      sameAs: [
-        'https://twitter.com/polarmutex',
-        'https://github.com/polarmutex',
-      ],
-      image: '',
-      email: 'brian+blog@brianryall.xyz',
-    },
-    {
-      '@type': 'WebSite',
-      '@id': 'https://brianryall.xyz/#website',
-      url: 'https://brianryall.xyz',
-      name: 'brianryall.xyz',
-      description: `delveloper writing about things I find interesting`,
-      publisher: {
-        '@id': 'https://brianryall.xyz/#person',
-      },
-      inLanguage: 'en-US',
-    },
-    {
-      '@type': 'WebPage',
-      '@id': 'https://brianryall.xyz' + pathname + '#webpage',
-      url: 'https://brianryall.xyz' + pathname,
-      name: title,
-      isPartOf: {
-        '@id': 'https://brianryall.xyz/#website',
-      },
-      inLanguage: 'en-US',
-      description: description,
-    },
-  ];
-  if (options.ogType === 'article') {
-    jsonLdGraph[2]['potentialAction'] = [
-      {
-        '@type': 'ReadAction',
-        target: ['https://brianryall.xyz' + pathname],
-      },
-    ];
-    jsonLdGraph[2]['primaryImageOfPage'] = {
-      '@id': 'https://brianryall.xyz' + pathname + '#primaryimage',
+    import { page } from '$app/stores';
+    import { onMount } from 'svelte';
+    const baseURL = `https://brianryall.xyz`;
+    const fullURL = `${baseURL}${$page.path}`;
+    const siteLogo = `${baseURL}/logo-512.png`;
+    const schemaOrgURL = 'http://schema.org';
+    export let blogPostInfo: {
+        title?: string;
+        excerpt?: string;
+        creationDate?: string;
+        cover?: string;
+    } = {};
+    const fallbackTitle = 'Brian Ryall - Blog';
+    const fallbackDescription = 'Personal website and blog written from scratch with SvelteKit and TailwindCSS.';
+    const socialTitle = blogPostInfo.title || fallbackTitle;
+    const socialDescription = blogPostInfo.excerpt || fallbackDescription;
+    const socialImage = blogPostInfo.cover ? `${baseURL}/${blogPostInfo.cover}` : siteLogo;
+    const authorJSONLD = {
+        '@type': 'Person',
+        name: 'Brian Ryall',
+        email: 'brian+website@brianryall.xyz',
     };
-    jsonLdGraph.push({
-      '@type': 'ImageObject',
-      '@id': 'https://brianryall.xyz' + pathname + '#primaryimage',
-      inLanguage: 'en-US',
-      url: image,
-      width: 700,
-      height: 394,
-      caption: title,
+    let schemaOrgJSONLD: any[] = [
+        {
+            '@context': schemaOrgURL,
+            '@type': 'WebSite',
+            url: baseURL,
+            name: fallbackTitle,
+            alternateName: fallbackTitle,
+        },
+    ];
+    const detailSchemaOrgJSONLD = [
+        {
+            '@context': schemaOrgURL,
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+                {
+                    '@type': 'ListItem',
+                    position: 1,
+                    item: {
+                        '@id': fullURL,
+                        name: socialTitle,
+                        //image: socialImage,
+                    },
+                },
+            ],
+        },
+        {
+            '@context': schemaOrgURL,
+            '@type': 'BlogPosting',
+            url: fullURL,
+            name: socialTitle,
+            alternateName: socialTitle,
+            headline: socialTitle,
+            image: { '@type': 'ImageObject', url: socialImage },
+            author: authorJSONLD,
+            publisher: {
+                ...authorJSONLD,
+                '@type': 'Organization',
+                logo: {
+                    '@type': 'ImageObject',
+                    url: siteLogo,
+                },
+            },
+            datePublished: blogPostInfo.creationDate,
+            description: socialDescription,
+        },
+    ];
+    let isBlogDetailsPage = Object.keys(blogPostInfo).length > 0;
+    $: openGraphType = isBlogDetailsPage ? 'article' : 'website';
+    const ldJson = `${JSON.stringify(
+        isBlogDetailsPage ? [...schemaOrgJSONLD, ...detailSchemaOrgJSONLD] : schemaOrgJSONLD,
+    )}`;
+    onMount(() => {
+        const ldJsonScript = document.getElementById('addedldJsonScript');
+        // We want to avoid placing multiple application/ld+json files in the DOM, therefore replace text content,
+        // or load script only on first mount of component
+        if (ldJsonScript) {
+            ldJsonScript.textContent = ldJson;
+        } else {
+            const script = document.createElement('script');
+            script.setAttribute('id', 'addedldJsonScript');
+            script.type = 'application/ld+json';
+            script.text = ldJson;
+            document.head.appendChild(script);
+        }
     });
-    jsonLdGraph.push({
-      '@type': 'Article',
-      '@id': 'https://brianryall.xyz' + pathname + '#article',
-      isPartOf: {
-        '@id': 'https://brianryall.xyz' + pathname + '#webpage',
-      },
-      author: {
-        '@id': 'https://brianryall.xyz' + pathname + '#person',
-      },
-      headline: title,
-      datePublished: options.datePublished,
-      dateModified: options.dateModified,
-      commentCount: 0,
-      mainEntityOfPage: {
-        '@id': 'https://brianryall.xyz' + pathname + '#webpage',
-      },
-      publisher: {
-        '@id': 'https://brianryall.xyz/#organization',
-      },
-      image: {
-        '@id': 'https://brianryall.xyz' + pathname + '#primaryimage',
-      },
-      keywords: options.keywords,
-      inLanguage: 'en-US',
-    });
-  }
 </script>
-<title>{title}</title>
-<meta name="description" content={description} />
-<meta name="image" content={image} />
-<link rel="”canonical”" href={url} />
-<!-- OpenGraph   -->
-<meta property="og:url" content={url} />
-<meta property="og:type" content={ogType} />
-<meta property="og:title" content={ogTitle} />
-<meta property="og:description" content={ogDescription} />
-<meta property="og:image" content={ogImage} />
-<!-- Twitter Card  -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:creator" content={twitterUsername} />
-<meta name="twitter:title" content={twitterTitle} />
-<meta name="twitter:description" content={twitterDescription} />
-<meta name="twitter:image" content={twitterImage} />
-{#if disableIndex}
-  <meta name="robots" content="noindex" />
-  <meta name="bingbot" content="noindex" />
-  <meta name="googlebot" content="noindex" />
-{/if}
-{@html jsonLd({ '@context': 'http://schema.org', '@graph': jsonLdGraph })}
+
+<svelte:head>
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content={socialTitle} />
+    <meta property="og:description" content={socialDescription} />
+    <meta property="og:url" content={fullURL} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:type" content={openGraphType} />
+
+    <!-- Twitter -->
+    <meta property="twitter:title" content={socialTitle} />
+    <meta property="twitter:description" content={socialDescription} />
+    <meta property="twitter:url" content={fullURL} />
+    <meta property="twitter:image" content={socialImage} />
+    <meta property="twitter:card" content="summary_large_image" />
+</svelte:head>

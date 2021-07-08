@@ -1,231 +1,59 @@
 <!-- https://webdesign.tutsplus.com/tutorials/how-to-build-a-responsive-navigation-bar-with-flexbox--cms-33535 -->
-
 <script lang="ts">
-    import Icon from 'svelte-awesome/components/Icon.svelte';
-    import { faGithub, faMastodon } from '@fortawesome/free-brands-svg-icons';
-    import { faBars, faRss } from '@fortawesome/free-solid-svg-icons';
-    import { faMoon } from '@fortawesome/free-regular-svg-icons';
-    //import ClickOutside from 'svelte-click-outside';
+  import Icon from 'svelte-awesome/components/Icon.svelte';
+  import { faGithub, faMastodon } from '@fortawesome/free-brands-svg-icons';
+  import { faBars, faRss } from '@fortawesome/free-solid-svg-icons';
+  import { faMoon } from '@fortawesome/free-regular-svg-icons';
+  import ClickOutside from 'svelte-click-outside';
 
-    import { theme } from "../utils/theme"
-	export let segment: string;
+  import { theme } from '../utils/theme';
 
-    let open = false;
+  let open = false;
 
-    const toggleMenu = () => {
-        open = !open;
-    }
+  const toggleMenu = () => {
+    open = !open;
+  };
 
-    const toggleDarkMode = () => {
-        theme.update(current => (current === "light" ? "dark" : "light"))
-    }
+  const toggleDarkMode = () => {
+    theme.update((current) => (current === 'light' ? 'dark' : 'light'));
+  };
 </script>
 
-<nav class="navbar">
-    <div class="navbar__container">
-        <div class="navbar__title">
-            <a href="/" aria-label="logo">Brian Ryall @PolarMutex</a>
-        </div>
-        <ul class="navbar__items">
-            <li class="navbar__item" class:active={segment === "blog"}>
-                <a href="/blog">Blog</a>
-            </li>
-            <!--<li class="navbar__item" class:active={segment === "project"}>
-                <a href="/project">Projects</a>
-            </li>-->
-            <!--<li class="navbar__item" class:active={segment === "about"}>
-                <a href="/about">About</a>
-            </li>-->
-            <li class="navbar__item">
-                <a
-                    class="navbar__button"
-                    href="https://github.com/polarmutex">
-                    <Icon data="{faGithub}" class="color: var(--color-main-text);" width="1.5rem" height="1.5rem" />
-                </a>
-            </li>
-            <li class="navbar__item">
-                <a
-                    class="navbar__button"
-                    href="https://fosstodon.org/@polarmutex">
-                    <Icon data="{faMastodon}" style="color: var(--color-bright-blue);" width="1.5rem" height="1.5rem" />
-                </a>
-            </li>
-            <li class="navbar__item">
-                <a
-                    class="navbar__button"
-                    href="/rss.xml">
-                    <Icon data="{faRss}" style="color: var(--color-bright-orange);" width="1.5rem" height="1.5rem" />
-                </a>
-            </li>
-            <li class="navbar__item">
-                <button
-                    class="navbar__button"
-                    on:click={toggleDarkMode}
-                    aria-label="toggle darkmode"
-                >
-                    <Icon data="{faMoon}" style="color: var(--color-bright-yellow);" width="1.5rem" height="1.5rem" />
-                </button>
-            </li>
-        </ul>
-        <div class="navbar__hamburger" >
-            <input
-                class="navbar__checkbox"
-                on:input|stopPropagation={toggleMenu}
-                type="checkbox"
-                {open}
-                aria-label="toggle menu"
-            />
-            <span class="navbar__hamburger_item--1" />
-            <span class="navbar__hamburger_item--2" />
-            <span class="navbar__hamburger_item--3" />
-        </div>
-    </div>
-</nav>
-
 <style>
-.navbar {
-    height: 4rem;
-    border-bottom: 0.0625rem var(--color-borders) solid;
-    z-index: 30;
-    background-color: var(--color-alt-bg);
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-}
-.navbar .active a {
-    color: var(--color-shine);
-}
-.navbar__container {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 0 1rem;
-}
-.navbar__title {
-    flex: 1;
-}
-.navbar__title a {
-    font-weight: 400;
-    text-decoration: none;
-    color: var(--color-main-text);
-    transition: color ease-out 0.1s;
-}
-.navbar__title a:hover {
-    color: var(--color-main-accent);
-}
-.navbar__items {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    justify-items: center;
-}
-.navbar__item {
-    padding-top: 0.25rem;
-}
-.navbar__item a {
-    font-family: "Overpass", sans-serif;
-    font-size: 1.125rem;
-    line-height: 1.5em;
-    position: relative;
-    color: var(--color-alt-text);
-    text-decoration: none;
-    transition: color ease-out 0.1s;
-}
-.navbar__item a:hover {
-    color: var(--color-shine);
-}
-.navbar__item a:hover::after {
-    transform: scale(1);
-}
-.navbar__item a::after {
-    content: "";
-    position: absolute;
-    bottom: -0.25rem;
-    left: 0;
-    right: 0;
-    height: 0.125rem;
-    background-color: var(--color-main-accent);
-    transform: scale(0);
-    transition: transform ease-out 0.2s;
-}
-.navbar__hamburger {
-    display: none;
-    cursor: pointer;
-}
-.navbar__checkbox {
-    opacity: 0;
-}
-.navbar__button {
-    border: none;
-    background: none;
-    outline: none;
-    display: flex;
-    align-items: center;
-    color: var(--color-main-text);
-    cursor: pointer;
-}
-@media only screen and (max-width: 480px) {
-    .navbar__items {
-        display: none;
-    }
-    .navbar__hamburger {
-        position: relative;
-        display: grid;
-        grid-template-rows: repeat(3, 1fr);
-        gap: 0.25rem;
-        width: 1.5rem;
-        height: 0.85rem;
-    }
-    .navbar__checkbox {
-        position: absolute;
-        min-width: 1.5rem;
-        min-height: 1.5rem;
-        z-index: 50;
-    }
-    .navbar__checkbox:checked ~ .navbar__hamburger_item--1 {
-        transform: rotate(45deg) translate3d(0, 0.5rem, 0);
-    }
-    .navbar__checkbox:checked ~ .navbar__hamburger_item--2 {
-        transform: scale(0);
-    }
-    .navbar__checkbox:checked ~ .navbar__hamburger_item--3 {
-        transform: rotate(-45deg) translate3d(0, -0.5rem, 0);
-    }
-    [class^="navbar__hamburger_item"] {
-        position: relative;
-        display: block;
-        background-color: var(--color-main-text);
-        transition: transform ease-out 0.2s;
-    }
-    .navbar__mobile {
-        position: fixed;
-        z-index: 20;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: var(--color-alt-bg);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .navbar__mobile_items {
-        display: grid;
-        grid-template-rows: repeat(5, 1fr);
-        align-items: center;
-        justify-items: center;
-        gap: 2rem;
-        list-style: none;
-    }
-    .navbar__mobile_item a {
-        font-family: "Overpass", sans-serif;
-        text-decoration: none;
-        font-size: 1.5rem;
-        color: var(--color-main-text);
-    }
-}
+  header {
+    z-index: 1;
+  }
 </style>
+
+<header class="fixed top-0 w-full bg-light-0-h dark:bg-dark-0-h">
+  <div class="container flex flex-wrap items-center justify-between p-3 mx-auto bg-light-0-h dark:bg-dark-0-h">
+    <div class="flex">
+      <a href="/" aria-label="logo">Brian Ryall @PolarMutex</a>
+    </div>
+    <div class="ml-auto md:hidden">
+      <ClickOutside on:clickoutside={() => (open = false)}>
+        <button
+          class="flex items-center px-3 py-2 text-teal-700 border border-gray-400 hover:text-teal-800 hover:border-gray-500"
+          aria-label="Hamburger menu"
+          on:click={toggleMenu}>
+          <Icon data={faBars} />
+        </button>
+      </ClickOutside>
+    </div>
+    <nav class:hidden={!open} class="w-full ml-auto md:flex md:w-auto hidden">
+      <a class="nav-link md:inline-block md:mt-0" href="/blog">Blog</a>
+      <a class="nav-link md:inline-block md:mt-0" href="https://github.com/polarmutex">
+        <Icon data={faGithub} />
+      </a>
+      <a class="nav-link md:inline-block md:mt-0" href="https://fosstodon.org/@polarmutex">
+        <Icon data={faMastodon} />
+      </a>
+      <a class="nav-link md:inline-block md:mt-0" href="/rss.xml">
+        <Icon data={faRss} />
+      </a>
+      <button class="nav-link md:inline-block md:mt-0" on:click={toggleDarkMode} aria-label="toggle darkmode">
+        <Icon data={faMoon} />
+      </button>
+    </nav>
+  </div>
+</header>

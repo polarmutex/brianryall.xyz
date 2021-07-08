@@ -1,0 +1,57 @@
+
+body {
+  font-family: 'Lato', sans-serif;
+  padding-top: 56px;
+  @apply relative leading-relaxed text-lg text-dark-0 bg-light-0 dark:text-light-0 dark:bg-dark-0;
+}
+
+.main a {
+  @apply text-teal-700;
+}
+
+.main a:hover {
+  @apply underline text-teal-800;
+}
+
+.main h1 {
+  @apply text-3xl mb-3 mt-6 font-bold;
+}
+
+.main h2 {
+  @apply text-2xl mb-3 mt-6 font-bold;
+}
+
+.main h3,
+.main h4,
+.main h5,
+.main h6 {
+  @apply text-xl mb-3 mt-6 font-semibold;
+}
+
+.main p {
+  @apply mb-4 text-gray;
+}
+
+.nav-link {
+  @apply block text-blue-bright mt-4 mr-4;
+}
+
+.nav-link:hover {
+  @apply text-blue-faded;
+}
+
+.footer-link {
+  @apply block text-blue-bright mt-4 mr-4;
+}
+
+.footer-link:hover {
+  @apply text-blue-faded;
+}
+
+.main .card {
+  @apply relative bg-white border rounded shadow-xl w-full;
+}
+
+.main .main-container {
+    @apply px-3 py-12 mx-auto;
+}
